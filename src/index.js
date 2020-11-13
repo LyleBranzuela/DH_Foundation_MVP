@@ -8,6 +8,7 @@ import allReducers from "./reducers";
 import throttle from "lodash/throttle";
 import App from "./components/App";
 import { loadState, saveState } from "./redux-handler/sessionStorage";
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
 // Load all the states if they exist
 const persistedState = loadState();
@@ -29,7 +30,9 @@ store.subscribe(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <Auth0ProviderWithHistory>
+        <App />
+      </Auth0ProviderWithHistory>
     </Router>
   </Provider>,
   document.querySelector("#root")

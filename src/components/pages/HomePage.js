@@ -1,3 +1,5 @@
+import React from "react";
+
 class HomePage extends React.Component {
   constructor() {
     super();
@@ -14,7 +16,7 @@ class HomePage extends React.Component {
     this._isMounted = false;
   }
   render() {
-    return <div></div>;
+    return <div>TESTSETSETESTSTE</div>;
   }
 }
 

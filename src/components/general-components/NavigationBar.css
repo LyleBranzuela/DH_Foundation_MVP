@@ -1,0 +1,18 @@
+.navBarStyle {
+  background-color: #22d1ee;
+  font-family: "gadugi";
+  font-size: 20px;
+  padding: 15px;
+}
+
+.navBarStyle .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navBarEffect {
+  border-radius: 8px;
+  background: #fff;
+  color: #22d1ee;
+  width: 100px;
+  height: 40px;
+}

@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "gadugi-bold";
+  src: local("gadugi-bold"), url(./fonts/gadugi-bold.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "gadugi";
+  src: local("gadugi"), url(./fonts/gadugi-normal.ttf) format("ttf");
+}

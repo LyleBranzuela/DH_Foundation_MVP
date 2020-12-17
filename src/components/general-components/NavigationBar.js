@@ -1,48 +1,11 @@
 import "./NavigationBar.css";
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Button from "@material-ui/core/Button";
+import { withRouter } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Navbar, Nav } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { signin, signout } from "../../actions";
-
-// Material UI Styles
-const drawerWidth = 240;
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerContainer: {
-    overflow: "auto",
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
 
 const NavigationBar = () => {
   // Auth0 Details
@@ -59,50 +22,50 @@ const NavigationBar = () => {
   console.log(isLoading);
   console.log(user);
   return (
-    <div className={useStyles.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={useStyles.menuButton}
-            color="inherit"
-            aria-label="menu"
+    <Navbar collapseOnSelect fixed="top" expand="lg" className="navBarStyle">
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav>
+          <LinkContainer to="/about">
+            <Nav.Link>About</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/contact-us">
+            <Nav.Link>Contact Us</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/founder-message">
+            <Nav.Link>Founder's Message</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/news">
+            <Nav.Link>Latest News</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/donate">
+            <Nav.Link>Donate</Nav.Link>
+          </LinkContainer>
+        </Nav>
+        {isAuthenticated ? (
+          <div>
+            <Nav.Link
+              color="inherit"
+              className="navBarEffect"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Log Out
+            </Nav.Link>
+            <LinkContainer to="/profile">
+              <Nav.Link>
+                <i class="bi bi-person-circle"></i>
+              </Nav.Link>
+            </LinkContainer>
+          </div>
+        ) : (
+          <Nav.Link
+            className="navBarEffect"
+            onClick={() => loginWithRedirect()}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            style={{ flex: 1 }}
-            variant="h6"
-            className={useStyles.title}
-          >
-            News
-          </Typography>
-          {isAuthenticated ? (
-            <div>
-              <Button
-                color="inherit"
-                onClick={() => logout({ returnTo: window.location.origin })}
-              >
-                Log Out
-              </Button>
-              <Link style={{ textDecoration: "none" }} to="/profile">
-                <IconButton
-                  edge="end"
-                  aria-label="account of current user"
-                  color="inherit"
-                >
-                  <AccountCircle justify="space-between" />
-                </IconButton>
-              </Link>
-            </div>
-          ) : (
-            <Button color="inherit" onClick={() => loginWithRedirect()}>
-              Log In
-            </Button>
-          )}
-        </Toolbar>
-      </AppBar>
-    </div>
+            Log In
+          </Nav.Link>
+        )}
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 

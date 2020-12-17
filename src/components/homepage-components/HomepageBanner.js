@@ -1,7 +1,8 @@
+import "./HomepageBanner.css";
 import React from "react";
-import HomepageBanner from "../homepage-components/HomepageBanner";
+import { Container } from "react-bootstrap";
 
-class HomePage extends React.Component {
+class HomepageBanner extends React.Component {
   constructor() {
     super();
 
@@ -17,8 +18,8 @@ class HomePage extends React.Component {
     this._isMounted = false;
   }
   render() {
-    return <HomepageBanner />;
+    return <Container></Container>;
   }
 }
 
-export default HomePage;
+export default HomepageBanner;
